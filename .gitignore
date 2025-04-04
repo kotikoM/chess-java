@@ -17,3 +17,6 @@ hs_err_pid*
 # Eclipse config files
 .classpath
 .project
+
+# IntelliJ IDEA config files
+.idea/
