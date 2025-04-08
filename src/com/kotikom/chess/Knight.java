@@ -1,4 +1,4 @@
-package model;
+package com.kotikom.chess;
 
 import java.util.LinkedList;
 import java.util.List;

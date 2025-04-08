@@ -1,4 +1,4 @@
-package model;
+package com.kotikom.chess;
 
 import javax.swing.*;
 

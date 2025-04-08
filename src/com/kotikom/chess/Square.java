@@ -1,4 +1,4 @@
-package model;
+package com.kotikom.chess;
 
 import java.awt.Color;
 import java.awt.Graphics;
