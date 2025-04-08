@@ -1,40 +1,35 @@
-package com.kotikom.chess.piece.impl;
+package com.kotikom.chess.view;
 
-import com.kotikom.chess.view.Board;
 import com.kotikom.chess.piece.Piece;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.BorderFactory;
 
-@SuppressWarnings("serial")
 public class Square extends JComponent {
-    private Board b;
+    private final Board b;
     
     private final int color;
     private Piece occupyingPiece;
-    private boolean dispPiece;
+    private boolean displayPiece;
     
-    private int xNum;
-    private int yNum;
+    private final int xNum;
+    private final int yNum;
     
     public Square(Board b, int c, int xNum, int yNum) {
         
         this.b = b;
         this.color = c;
-        this.dispPiece = true;
+        this.displayPiece = true;
         this.xNum = xNum;
         this.yNum = yNum;
         
         
         this.setBorder(BorderFactory.createEmptyBorder());
     }
-    
-    public int getColor() {
-        return this.color;
-    }
-    
+
     public Piece getOccupyingPiece() {
         return occupyingPiece;
     }
@@ -52,7 +47,7 @@ public class Square extends JComponent {
     }
     
     public void setDisplay(boolean v) {
-        this.dispPiece = v;
+        this.displayPiece = v;
     }
     
     public void put(Piece p) {
@@ -60,10 +55,8 @@ public class Square extends JComponent {
         p.setPosition(this);
     }
     
-    public Piece removePiece() {
-        Piece p = this.occupyingPiece;
+    public void removePiece() {
         this.occupyingPiece = null;
-        return p;
     }
     
     public void capture(Piece p) {
@@ -84,7 +77,7 @@ public class Square extends JComponent {
         
         g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         
-        if(occupyingPiece != null && dispPiece) {
+        if(occupyingPiece != null && displayPiece) {
             occupyingPiece.draw(g);
         }
     }

@@ -1,17 +1,15 @@
 package com.kotikom.chess.piece;
 
+import com.kotikom.chess.view.Square;
 import com.kotikom.chess.view.Board;
-import com.kotikom.chess.piece.impl.Square;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-
-import javax.imageio.ImageIO;
 
 public abstract class Piece {
     private final int color;
@@ -23,7 +21,7 @@ public abstract class Piece {
         this.currentSquare = initSq;
 
         try {
-            this.img = ImageIO.read(Objects.requireNonNull(getClass().getResource("/"+img_file)));
+            this.img = ImageIO.read(Objects.requireNonNull(getClass().getResource("/" + img_file)));
         } catch (IOException e) {
             System.out.println("File not found: " + e.getMessage());
         }
@@ -174,6 +172,5 @@ public abstract class Piece {
         return diagonalOccupy;
     }
 
-    // No implementation, to be implemented by each subclass
     public abstract List<Square> getLegalMoves(Board b);
 }

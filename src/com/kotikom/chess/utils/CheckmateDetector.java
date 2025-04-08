@@ -5,7 +5,7 @@ import com.kotikom.chess.piece.Piece;
 import com.kotikom.chess.piece.impl.Bishop;
 import com.kotikom.chess.piece.impl.King;
 import com.kotikom.chess.piece.impl.Queen;
-import com.kotikom.chess.piece.impl.Square;
+import com.kotikom.chess.view.Square;
 
 import java.util.HashMap;
 import java.util.Iterator;
