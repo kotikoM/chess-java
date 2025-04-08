@@ -20,7 +20,7 @@ public abstract class Piece {
         this.currentSquare = initSq;
 
         try {
-            this.img = ImageIO.read(Objects.requireNonNull(getClass().getResource(img_file)));
+            this.img = ImageIO.read(Objects.requireNonNull(getClass().getResource("/"+img_file)));
         } catch (IOException e) {
             System.out.println("File not found: " + e.getMessage());
         }
