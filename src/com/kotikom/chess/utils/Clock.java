@@ -1,4 +1,4 @@
-package com.kotikom.chess;
+package com.kotikom.chess.utils;
 
 public class Clock {
     private int hh;

@@ -1,4 +1,7 @@
-package com.kotikom.chess;
+package com.kotikom.chess.piece.impl;
+
+import com.kotikom.chess.view.Board;
+import com.kotikom.chess.piece.Piece;
 
 import java.util.List;
 

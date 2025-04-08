@@ -1,5 +1,7 @@
 package com.kotikom.chess;
 
+import com.kotikom.chess.view.StartMenu;
+
 import javax.swing.*;
 
 public class Game implements Runnable {

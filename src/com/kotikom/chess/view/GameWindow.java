@@ -1,4 +1,6 @@
-package com.kotikom.chess;
+package com.kotikom.chess.view;
+
+import com.kotikom.chess.utils.Clock;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

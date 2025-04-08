@@ -1,4 +1,7 @@
-package com.kotikom.chess;
+package com.kotikom.chess.piece;
+
+import com.kotikom.chess.view.Board;
+import com.kotikom.chess.piece.impl.Square;
 
 import java.awt.Graphics;
 import java.awt.Image;

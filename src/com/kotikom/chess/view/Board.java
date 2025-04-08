@@ -1,4 +1,8 @@
-package com.kotikom.chess;
+package com.kotikom.chess.view;
+
+import com.kotikom.chess.piece.Piece;
+import com.kotikom.chess.piece.impl.*;
+import com.kotikom.chess.utils.CheckmateDetector;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

@@ -1,11 +1,14 @@
-package com.kotikom.chess;
+package com.kotikom.chess.piece.impl;
+
+import com.kotikom.chess.view.Board;
+import com.kotikom.chess.piece.Piece;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Rook extends Piece {
+public class Queen extends Piece {
 
-    public Rook(int color, Square initSq, String img_file) {
+    public Queen(int color, Square initSq, String img_file) {
         super(color, initSq, img_file);
     }
 
@@ -27,7 +30,11 @@ public class Rook extends Piece {
             if (i != x) legalMoves.add(board[y][i]);
         }
         
+        List<Square> bMoves = getDiagonalOccupations(board, x, y);
+        
+        legalMoves.addAll(bMoves);
+        
         return legalMoves;
     }
-
+    
 }
