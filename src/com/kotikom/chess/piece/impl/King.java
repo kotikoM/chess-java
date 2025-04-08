@@ -1,7 +1,7 @@
 package com.kotikom.chess.piece.impl;
 
-import com.kotikom.chess.view.Board;
 import com.kotikom.chess.piece.Piece;
+import com.kotikom.chess.view.Board;
 import com.kotikom.chess.view.Square;
 
 import java.util.LinkedList;
@@ -15,29 +15,28 @@ public class King extends Piece {
 
     @Override
     public List<Square> getLegalMoves(Board b) {
-LinkedList<Square> legalMoves = new LinkedList<Square>();
-        
+        LinkedList<Square> legalMoves = new LinkedList<>();
+
         Square[][] board = b.getSquareArray();
-        
+
         int x = this.getPosition().getXNum();
         int y = this.getPosition().getYNum();
-        
+
         for (int i = 1; i > -2; i--) {
             for (int k = 1; k > -2; k--) {
-                if(!(i == 0 && k == 0)) {
+                if (!(i == 0 && k == 0)) {
                     try {
-                        if(!board[y + k][x + i].isOccupied() || 
-                                board[y + k][x + i].getOccupyingPiece().getColor() 
-                                != this.getColor()) {
+                        if (!board[y + k][x + i].isOccupied() ||
+                                board[y + k][x + i].getOccupyingPiece().getColor()
+                                        != this.getColor()) {
                             legalMoves.add(board[y + k][x + i]);
                         }
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        continue;
+                    } catch (ArrayIndexOutOfBoundsException ignored) {
                     }
                 }
             }
         }
-        
+
         return legalMoves;
     }
 

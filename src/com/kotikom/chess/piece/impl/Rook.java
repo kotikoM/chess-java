@@ -15,19 +15,19 @@ public class Rook extends Piece {
 
     @Override
     public List<Square> getLegalMoves(Board b) {
-        LinkedList<Square> legalMoves = new LinkedList<Square>();
+        LinkedList<Square> legalMoves = new LinkedList<>();
         Square[][] board = b.getSquareArray();
         
         int x = this.getPosition().getXNum();
         int y = this.getPosition().getYNum();
         
-        int[] occups = getLinearOccupations(board, x, y);
+        int[] linearOccupations = getLinearOccupations(board, x, y);
         
-        for (int i = occups[0]; i <= occups[1]; i++) {
+        for (int i = linearOccupations[0]; i <= linearOccupations[1]; i++) {
             if (i != y) legalMoves.add(board[i][x]);
         }
         
-        for (int i = occups[2]; i <= occups[3]; i++) {
+        for (int i = linearOccupations[2]; i <= linearOccupations[3]; i++) {
             if (i != x) legalMoves.add(board[y][i]);
         }
         

@@ -23,7 +23,7 @@ public class Pawn extends Piece {
 
     @Override
     public List<Square> getLegalMoves(Board b) {
-        LinkedList<Square> legalMoves = new LinkedList<Square>();
+        LinkedList<Square> legalMoves = new LinkedList<>();
         
         Square[][] board = b.getSquareArray();
         
