@@ -1,3 +1,4 @@
+package model;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -27,7 +28,7 @@ public class StartMenu implements Runnable {
         Box components = Box.createVerticalBox();
         startWindow.add(components);
         
-        // Game title
+        // model.Game title
         final JPanel titlePanel = new JPanel();
         components.add(titlePanel);
         final JLabel titleLabel = new JLabel("Chess");
