@@ -192,7 +192,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                 return;
 
             List<Square> legalMoves = currPiece.getLegalMoves(this);
-            movable = cmd.getAllowableSquares(whiteTurn);
+            movable = cmd.getAllowableSquares();
 
             if (legalMoves.contains(sq) && movable.contains(sq)
                     && cmd.testMove(currPiece, sq)) {
@@ -215,7 +215,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                 } else {
                     currPiece = null;
                     whiteTurn = !whiteTurn;
-                    movable = cmd.getAllowableSquares(whiteTurn);
+                    movable = cmd.getAllowableSquares();
                 }
 
             } else {
