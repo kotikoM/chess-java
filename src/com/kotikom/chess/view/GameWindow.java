@@ -107,7 +107,7 @@ public class GameWindow {
                     boolean turn = board.getTurn();
                     
                     if (turn) {
-                        whiteClock.decr();
+                        whiteClock.decrementSeconds();
                         wTime.setText(whiteClock.getTime());
                         
                         if (whiteClock.outOfTime()) {
@@ -125,7 +125,7 @@ public class GameWindow {
                             } else gameWindow.dispose();
                         }
                     } else {
-                        blackClock.decr();
+                        blackClock.decrementSeconds();
                         bTime.setText(blackClock.getTime());
                         
                         if (blackClock.outOfTime()) {
