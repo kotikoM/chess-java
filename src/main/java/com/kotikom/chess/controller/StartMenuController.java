@@ -23,7 +23,7 @@ public class StartMenuController {
         // Instructions button shows dialog
         view.getInstrButton().addActionListener(e ->
                 JOptionPane.showMessageDialog(
-                        view.getWindow(),
+                        view.getStartWindow(),
                         "To begin a new game, input player names\n" +
                                 "next to the pieces. Set the clocks and\n" +
                                 "click \"Start\". Setting the timer to all\n" +
@@ -52,7 +52,7 @@ public class StartMenuController {
             view.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(
-                    view.getWindow(),
+                    view.getStartWindow(),
                     "Invalid game settings",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);

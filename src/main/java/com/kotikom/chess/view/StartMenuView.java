@@ -1,11 +1,13 @@
 package com.kotikom.chess.view;
 
+import lombok.Getter;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-
+@Getter
 public class StartMenuView {
     private final JFrame startWindow;
     private final JTextField blackInput;
@@ -100,42 +102,6 @@ public class StartMenuView {
         components.add(buttonBox);
 
         startWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    public JFrame getWindow() {
-        return startWindow;
-    }
-
-    public JTextField getBlackInput() {
-        return blackInput;
-    }
-
-    public JTextField getWhiteInput() {
-        return whiteInput;
-    }
-
-    public JComboBox<String> getHours() {
-        return hours;
-    }
-
-    public JComboBox<String> getMinutes() {
-        return minutes;
-    }
-
-    public JComboBox<String> getSeconds() {
-        return seconds;
-    }
-
-    public JButton getStartButton() {
-        return startButton;
-    }
-
-    public JButton getInstrButton() {
-        return instrButton;
-    }
-
-    public JButton getQuitButton() {
-        return quitButton;
     }
 
     public void show() {
