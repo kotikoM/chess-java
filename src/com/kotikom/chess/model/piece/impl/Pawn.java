@@ -1,19 +1,19 @@
 package com.kotikom.chess.model.piece.impl;
 
 import com.kotikom.chess.model.Board;
-import com.kotikom.chess.model.piece.Piece;
 import com.kotikom.chess.model.Square;
+import com.kotikom.chess.model.piece.Piece;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.LinkedList;
 
 public class Pawn extends Piece {
     private boolean wasMoved;
-    
+
     public Pawn(int color, Square initSq, String img_file) {
         super(color, initSq, img_file);
     }
-    
+
     @Override
     public boolean move(Square fin) {
         boolean b = super.move(fin);
@@ -23,66 +23,37 @@ public class Pawn extends Piece {
 
     @Override
     public List<Square> getLegalMoves(Board b) {
-        LinkedList<Square> legalMoves = new LinkedList<>();
-        
+        List<Square> legalMoves = new ArrayList<>();
         Square[][] board = b.getSquareArray();
-        
+
         int x = this.getPosition().getXNum();
         int y = this.getPosition().getYNum();
-        int c = this.getColor();
-        
-        if (c == 0) {
-            if (!wasMoved) {
-                if (!board[y+2][x].isOccupied()) {
-                    legalMoves.add(board[y+2][x]);
-                }
+        int direction = (this.getColor() == 0) ? 1 : -1;
+
+        int forwardY = y + direction;
+        if (isInBounds(forwardY, x) && !board[forwardY][x].isOccupied()) {
+            legalMoves.add(board[forwardY][x]);
+
+            int doubleForwardY = y + 2 * direction;
+            if (!wasMoved && isInBounds(doubleForwardY, x) && !board[doubleForwardY][x].isOccupied()) {
+                legalMoves.add(board[doubleForwardY][x]);
             }
-            
-            if (y+1 < 8) {
-                if (!board[y+1][x].isOccupied()) {
-                    legalMoves.add(board[y+1][x]);
-                }
-            }
-            
-            if (x+1 < 8 && y+1 < 8) {
-                if (board[y+1][x+1].isOccupied()) {
-                    legalMoves.add(board[y+1][x+1]);
-                }
-            }
-                
-            if (x-1 >= 0 && y+1 < 8) {
-                if (board[y+1][x-1].isOccupied()) {
-                    legalMoves.add(board[y+1][x-1]);
+        }
+
+        for (int dx : new int[]{-1, 1}) {
+            int newX = x + dx;
+            int newY = y + direction;
+            if (isInBounds(newY, newX) && board[newY][newX].isOccupied()) {
+                if (board[newY][newX].getOccupyingPiece().getColor() != this.getColor()) {
+                    legalMoves.add(board[newY][newX]);
                 }
             }
         }
-        
-        if (c == 1) {
-            if (!wasMoved) {
-                if (!board[y-2][x].isOccupied()) {
-                    legalMoves.add(board[y-2][x]);
-                }
-            }
-            
-            if (y-1 >= 0) {
-                if (!board[y-1][x].isOccupied()) {
-                    legalMoves.add(board[y-1][x]);
-                }
-            }
-            
-            if (x+1 < 8 && y-1 >= 0) {
-                if (board[y-1][x+1].isOccupied()) {
-                    legalMoves.add(board[y-1][x+1]);
-                }
-            }
-                
-            if (x-1 >= 0 && y-1 >= 0) {
-                if (board[y-1][x-1].isOccupied()) {
-                    legalMoves.add(board[y-1][x-1]);
-                }
-            }
-        }
-        
+
         return legalMoves;
+    }
+
+    private boolean isInBounds(int y, int x) {
+        return y >= 0 && y < 8 && x >= 0 && x < 8;
     }
 }

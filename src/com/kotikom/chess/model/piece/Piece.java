@@ -1,13 +1,14 @@
 package com.kotikom.chess.model.piece;
 
-import com.kotikom.chess.model.Square;
 import com.kotikom.chess.model.Board;
+import com.kotikom.chess.model.Square;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Image;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,8 +32,12 @@ public abstract class Piece {
         Piece occupyingPiece = fin.getOccupyingPiece();
 
         if (occupyingPiece != null) {
-            if (occupyingPiece.getColor() == this.color) return false;
-            else fin.capture(this);
+            if (occupyingPiece.getColor() == this.color) {
+                return false;
+            }
+            else {
+                fin.capture(this);
+            }
         }
 
         currentSquare.removePiece();
@@ -58,10 +63,7 @@ public abstract class Piece {
     }
 
     public void draw(Graphics g) {
-        int x = currentSquare.getX();
-        int y = currentSquare.getY();
-
-        g.drawImage(this.img, x, y, null);
+        g.drawImage(this.img, currentSquare.getX(), currentSquare.getY(), null);
     }
 
     public int[] getLinearOccupations(Square[][] board, int x, int y) {
@@ -106,7 +108,7 @@ public abstract class Piece {
     }
 
     public List<Square> getDiagonalOccupations(Square[][] board, int x, int y) {
-        LinkedList<Square> diagonalOccupy = new LinkedList<>();
+        List<Square> diagonalOccupy = new ArrayList<>();
 
         int xNW = x - 1;
         int xSW = x - 1;
