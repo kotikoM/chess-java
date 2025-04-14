@@ -24,3 +24,6 @@ hs_err_pid*
 # Auto generated
 chess-java.iml
 out/
+
+# mvn
+target/
