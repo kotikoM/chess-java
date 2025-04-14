@@ -1,8 +1,8 @@
-package com.kotikom.chess.model;
+package com.kotikom.chess.model.core;
 
 import com.kotikom.chess.model.piece.Piece;
 import com.kotikom.chess.model.piece.impl.*;
-import com.kotikom.chess.model.utils.CheckmateDetector;
+import com.kotikom.chess.model.internal.CheckmateDetector;
 
 import java.util.ArrayList;
 import java.util.List;

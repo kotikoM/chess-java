@@ -1,7 +1,8 @@
 package com.kotikom.chess.model.piece.impl;
 
-import com.kotikom.chess.model.Board;
-import com.kotikom.chess.model.Square;
+import com.kotikom.chess.model.core.Board;
+import com.kotikom.chess.model.core.Square;
+import com.kotikom.chess.model.internal.MoveUtils;
 import com.kotikom.chess.model.piece.Piece;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Rook extends Piece {
         int x = this.getPosition().getXNum();
         int y = this.getPosition().getYNum();
 
-        int[] linearOccupations = getLinearOccupations(board, x, y);
+        int[] linearOccupations = MoveUtils.getLinearOccupations(board, x, y, getColor());
 
         for (int i = linearOccupations[0]; i <= linearOccupations[1]; i++) {
             if (i != y) legalMoves.add(board[i][x]);

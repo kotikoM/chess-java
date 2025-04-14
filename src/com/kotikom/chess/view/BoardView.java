@@ -1,10 +1,10 @@
 package com.kotikom.chess.view;
 
 import com.kotikom.chess.controller.GameWindow;
-import com.kotikom.chess.model.Board;
-import com.kotikom.chess.model.Square;
+import com.kotikom.chess.model.core.Board;
+import com.kotikom.chess.model.core.Square;
 import com.kotikom.chess.model.piece.Piece;
-import com.kotikom.chess.model.utils.CheckmateDetector;
+import com.kotikom.chess.model.internal.CheckmateDetector;
 
 import javax.swing.*;
 import java.awt.*;

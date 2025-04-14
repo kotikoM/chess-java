@@ -1,4 +1,4 @@
-package com.kotikom.chess.model;
+package com.kotikom.chess.model.core;
 
 import com.kotikom.chess.model.piece.Piece;
 

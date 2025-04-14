@@ -1,6 +1,6 @@
 package com.kotikom.chess.controller;
 
-import com.kotikom.chess.model.utils.Clock;
+import com.kotikom.chess.model.internal.Clock;
 import com.kotikom.chess.view.BoardView;
 
 import java.awt.BorderLayout;

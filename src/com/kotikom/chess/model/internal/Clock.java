@@ -1,4 +1,4 @@
-package com.kotikom.chess.model.utils;
+package com.kotikom.chess.model.internal;
 
 public class Clock {
     private int hh;

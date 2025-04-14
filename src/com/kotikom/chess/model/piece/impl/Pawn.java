@@ -1,7 +1,7 @@
 package com.kotikom.chess.model.piece.impl;
 
-import com.kotikom.chess.model.Board;
-import com.kotikom.chess.model.Square;
+import com.kotikom.chess.model.core.Board;
+import com.kotikom.chess.model.core.Square;
 import com.kotikom.chess.model.piece.Piece;
 
 import java.util.ArrayList;
