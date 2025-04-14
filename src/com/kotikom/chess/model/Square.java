@@ -1,6 +1,6 @@
-package com.kotikom.chess.view;
+package com.kotikom.chess.model;
 
-import com.kotikom.chess.piece.Piece;
+import com.kotikom.chess.model.piece.Piece;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,6 +23,18 @@ public class Square extends JComponent {
         this.yNum = yNum;
 
         this.setBorder(BorderFactory.createEmptyBorder());
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public boolean isDisplayPiece() {
+        return displayPiece;
     }
 
     public Piece getOccupyingPiece() {

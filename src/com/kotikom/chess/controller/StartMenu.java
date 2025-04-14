@@ -1,4 +1,6 @@
-package com.kotikom.chess.view;
+package com.kotikom.chess.controller;
+
+import com.kotikom.chess.view.GameWindow;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

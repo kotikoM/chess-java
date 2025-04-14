@@ -1,11 +1,11 @@
-package com.kotikom.chess.utils;
+package com.kotikom.chess.model.utils;
 
-import com.kotikom.chess.view.Board;
-import com.kotikom.chess.piece.Piece;
-import com.kotikom.chess.piece.impl.Bishop;
-import com.kotikom.chess.piece.impl.King;
-import com.kotikom.chess.piece.impl.Queen;
-import com.kotikom.chess.view.Square;
+import com.kotikom.chess.model.Board;
+import com.kotikom.chess.model.piece.Piece;
+import com.kotikom.chess.model.piece.impl.Bishop;
+import com.kotikom.chess.model.piece.impl.King;
+import com.kotikom.chess.model.piece.impl.Queen;
+import com.kotikom.chess.model.Square;
 
 import java.util.HashMap;
 import java.util.Iterator;

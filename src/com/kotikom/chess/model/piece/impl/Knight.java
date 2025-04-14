@@ -1,8 +1,8 @@
-package com.kotikom.chess.piece.impl;
+package com.kotikom.chess.model.piece.impl;
 
-import com.kotikom.chess.piece.Piece;
-import com.kotikom.chess.view.Board;
-import com.kotikom.chess.view.Square;
+import com.kotikom.chess.model.piece.Piece;
+import com.kotikom.chess.model.Board;
+import com.kotikom.chess.model.Square;
 
 import java.util.LinkedList;
 import java.util.List;

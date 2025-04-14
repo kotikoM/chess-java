@@ -1,7 +1,7 @@
-package com.kotikom.chess.piece;
+package com.kotikom.chess.model.piece;
 
-import com.kotikom.chess.view.Square;
-import com.kotikom.chess.view.Board;
+import com.kotikom.chess.model.Square;
+import com.kotikom.chess.model.Board;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

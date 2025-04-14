@@ -1,6 +1,6 @@
 package com.kotikom.chess;
 
-import com.kotikom.chess.view.StartMenu;
+import com.kotikom.chess.controller.StartMenu;
 
 import javax.swing.*;
 
