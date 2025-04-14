@@ -4,7 +4,8 @@ import com.kotikom.chess.model.piece.Piece;
 import com.kotikom.chess.model.piece.impl.*;
 import com.kotikom.chess.model.utils.CheckmateDetector;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
     private static final String RESOURCES_WBISHOP_PNG = "wbishop.png";
@@ -19,15 +20,15 @@ public class Board {
     private static final String RESOURCES_WQUEEN_PNG = "wqueen.png";
     private static final String RESOURCES_WPAWN_PNG = "wpawn.png";
     private static final String RESOURCES_BPAWN_PNG = "bpawn.png";
-    public final LinkedList<Piece> bPieces;
-    public final LinkedList<Piece> wPieces;
+    public final List<Piece> bPieces;
+    public final List<Piece> wPieces;
     private final Square[][] boardSquares;
     private CheckmateDetector cmd;
 
     public Board() {
         boardSquares = new Square[8][8];
-        bPieces = new LinkedList<>();
-        wPieces = new LinkedList<>();
+        bPieces = new ArrayList<>();
+        wPieces = new ArrayList<>();
 
         initializeSquares();
         initializePieces();
