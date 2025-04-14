@@ -41,17 +41,10 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
     }
 
     private void addListenersToBoardSquares() {
-        Square[][] boardSquares = board.getSquareArray();
+        Square[][] boardSquares = board.getBoardSquares();
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                int xMod = x % 2;
-                int yMod = y % 2;
-
-                if ((xMod == 0 && yMod == 0) || (xMod == 1 && yMod == 1)) {
-                    this.add(boardSquares[x][y]);
-                } else {
-                    this.add(boardSquares[x][y]);
-                }
+                this.add(boardSquares[x][y]);
             }
         }
     }
@@ -63,7 +56,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void paintComponent(Graphics g) {
-        Square[][] squareArray = board.getSquareArray();
+        Square[][] squareArray = board.getBoardSquares();
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 Square sq = squareArray[y][x];
@@ -137,7 +130,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
             }
 
         } else {
-            currPiece.getPosition().setDisplay(true);
+            currPiece.getCurrentSquare().setDisplay(true);
             currPiece = null;
         }
 

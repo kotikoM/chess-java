@@ -53,7 +53,7 @@ public class CheckmateDetector {
         wMoves = new HashMap<>();
         bMoves = new HashMap<>();
 
-        Square[][] brd = board.getSquareArray();
+        Square[][] brd = board.getBoardSquares();
 
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
@@ -88,7 +88,7 @@ public class CheckmateDetector {
                 continue;
             }
 
-            if (p.getPosition() == null) {
+            if (p.getCurrentSquare() == null) {
                 iter.remove();
                 continue;
             }
@@ -106,7 +106,7 @@ public class CheckmateDetector {
      */
     public boolean isBlackInCheck() {
         update();
-        Square sq = bk.getPosition();
+        Square sq = bk.getCurrentSquare();
         if (wMoves.get(sq).isEmpty()) {
             movableSquares.addAll(squares);
             return false;
@@ -122,7 +122,7 @@ public class CheckmateDetector {
      */
     public boolean isWhiteInCheck() {
         update();
-        Square sq = wk.getPosition();
+        Square sq = wk.getCurrentSquare();
         if (bMoves.get(sq).isEmpty()) {
             movableSquares.addAll(squares);
             return false;
@@ -145,7 +145,7 @@ public class CheckmateDetector {
         if (canEvade(wMoves, bk)) checkmate = false;
 
         // If no, check if threat can be captured
-        List<Piece> threats = wMoves.get(bk.getPosition());
+        List<Piece> threats = wMoves.get(bk.getCurrentSquare());
         if (canCapture(bMoves, threats, bk)) checkmate = false;
 
         // If no, check if threat can be blocked
@@ -169,7 +169,7 @@ public class CheckmateDetector {
         if (canEvade(bMoves, wk)) checkmate = false;
 
         // If no, check if threat can be captured
-        List<Piece> threats = bMoves.get(wk.getPosition());
+        List<Piece> threats = bMoves.get(wk.getCurrentSquare());
         if (canCapture(wMoves, threats, wk)) checkmate = false;
 
         // If no, check if threat can be blocked
@@ -199,7 +199,7 @@ public class CheckmateDetector {
 
         boolean capture = false;
         if (threats.size() == 1) {
-            Square sq = threats.getFirst().getPosition();
+            Square sq = threats.getFirst().getCurrentSquare();
 
             if (k.getLegalMoves(board).contains(sq)) {
                 movableSquares.add(sq);
@@ -228,9 +228,9 @@ public class CheckmateDetector {
         boolean canBeBlocked = false;
 
         if (threats.size() == 1) {
-            Square ts = threats.getFirst().getPosition();
-            Square ks = k.getPosition();
-            Square[][] brdArray = board.getSquareArray();
+            Square ts = threats.getFirst().getCurrentSquare();
+            Square ks = k.getCurrentSquare();
+            Square[][] brdArray = board.getBoardSquares();
 
             if (ks.getXNum() == ts.getXNum()) {
                 int max = Math.max(ks.getYNum(), ts.getYNum());
@@ -396,7 +396,7 @@ public class CheckmateDetector {
         Piece c = sq.getOccupyingPiece();
 
         boolean movetest = true;
-        Square init = p.getPosition();
+        Square init = p.getCurrentSquare();
 
         p.move(sq);
         update();

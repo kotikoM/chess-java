@@ -1,12 +1,16 @@
 package com.kotikom.chess.model.core;
 
 import com.kotikom.chess.model.piece.Piece;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.BorderFactory;
 
+@Getter
+@Setter
 public class Square extends JComponent {
     private final Board board;
     private final int color;
@@ -23,14 +27,6 @@ public class Square extends JComponent {
         this.yNum = yNum;
 
         this.setBorder(BorderFactory.createEmptyBorder());
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public Piece getOccupyingPiece() {
-        return occupyingPiece;
     }
 
     public boolean isOccupied() {
@@ -51,7 +47,7 @@ public class Square extends JComponent {
 
     public void put(Piece p) {
         this.occupyingPiece = p;
-        p.setPosition(this);
+        p.setCurrentSquare(this);
     }
 
     public void removePiece() {

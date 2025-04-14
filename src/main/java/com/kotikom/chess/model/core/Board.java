@@ -3,10 +3,14 @@ package com.kotikom.chess.model.core;
 import com.kotikom.chess.model.piece.Piece;
 import com.kotikom.chess.model.piece.impl.*;
 import com.kotikom.chess.model.internal.CheckmateDetector;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class Board {
     private static final String RESOURCES_WBISHOP_PNG = "wbishop.png";
     private static final String RESOURCES_BBISHOP_PNG = "bbishop.png";
@@ -81,13 +85,5 @@ public class Board {
         }
 
         cmd = new CheckmateDetector(this, wPieces, bPieces, wk, bk);
-    }
-
-    public Square[][] getSquareArray() {
-        return this.boardSquares;
-    }
-
-    public CheckmateDetector getCmd() {
-        return cmd;
     }
 }

@@ -24,10 +24,10 @@ public class Pawn extends Piece {
     @Override
     public List<Square> getLegalMoves(Board b) {
         List<Square> legalMoves = new ArrayList<>();
-        Square[][] board = b.getSquareArray();
+        Square[][] board = b.getBoardSquares();
 
-        int x = this.getPosition().getXNum();
-        int y = this.getPosition().getYNum();
+        int x = this.getCurrentSquare().getXNum();
+        int y = this.getCurrentSquare().getYNum();
         int direction = (this.getColor() == 0) ? 1 : -1;
 
         int forwardY = y + direction;

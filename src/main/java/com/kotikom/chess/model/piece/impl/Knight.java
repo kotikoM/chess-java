@@ -16,10 +16,10 @@ public class Knight extends Piece {
     @Override
     public List<Square> getLegalMoves(Board b) {
         List<Square> legalMoves = new ArrayList<>();
-        Square[][] board = b.getSquareArray();
+        Square[][] board = b.getBoardSquares();
 
-        int x = this.getPosition().getXNum();
-        int y = this.getPosition().getYNum();
+        int x = this.getCurrentSquare().getXNum();
+        int y = this.getCurrentSquare().getYNum();
 
         int[][] knightMoves = {
                 {2, 1}, {1, 2}, {-1, 2}, {-2, 1},

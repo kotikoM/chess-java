@@ -23,10 +23,11 @@ public class StartMenuController {
         view.getInstrButton().addActionListener(e ->
                 JOptionPane.showMessageDialog(
                         view.getStartWindow(),
-                        "To begin a new game, input player names\n" +
-                                "next to the pieces. Set the clocks and\n" +
-                                "click \"Start\". Setting the timer to all\n" +
-                                "zeroes begins a new untimed game.",
+                        """
+                                To begin a new game, input player names
+                                next to the pieces. Set the clocks and
+                                click "Start". Setting the timer to all
+                                zeroes begins a new untimed game.""",
                         "How to play",
                         JOptionPane.PLAIN_MESSAGE)
         );
