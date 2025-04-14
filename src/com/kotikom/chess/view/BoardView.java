@@ -1,6 +1,5 @@
 package com.kotikom.chess.view;
 
-import com.kotikom.chess.controller.GameWindow;
 import com.kotikom.chess.model.core.Board;
 import com.kotikom.chess.model.core.Square;
 import com.kotikom.chess.model.piece.Piece;

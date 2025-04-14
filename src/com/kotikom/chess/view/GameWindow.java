@@ -1,7 +1,7 @@
-package com.kotikom.chess.controller;
+package com.kotikom.chess.view;
 
+import com.kotikom.chess.controller.StartMenuController;
 import com.kotikom.chess.model.internal.Clock;
-import com.kotikom.chess.view.BoardView;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -177,7 +177,7 @@ public class GameWindow {
                     "Confirm new game", JOptionPane.YES_NO_OPTION);
 
             if (n == JOptionPane.YES_OPTION) {
-                SwingUtilities.invokeLater(new StartMenu());
+                SwingUtilities.invokeLater(StartMenuController::new);
                 gameWindow.dispose();
             }
         });
@@ -212,7 +212,7 @@ public class GameWindow {
                     JOptionPane.YES_NO_OPTION);
 
             if (n == JOptionPane.YES_OPTION) {
-                SwingUtilities.invokeLater(new StartMenu());
+                SwingUtilities.invokeLater(StartMenuController::new);
                 gameWindow.dispose();
             }
         } else {
@@ -225,7 +225,7 @@ public class GameWindow {
                     JOptionPane.YES_NO_OPTION);
 
             if (n == JOptionPane.YES_OPTION) {
-                SwingUtilities.invokeLater(new StartMenu());
+                SwingUtilities.invokeLater(StartMenuController::new);
                 gameWindow.dispose();
             }
         }

@@ -1,15 +1,13 @@
 package com.kotikom.chess;
 
-import com.kotikom.chess.controller.StartMenu;
+import com.kotikom.chess.controller.StartMenuController;
 
 import javax.swing.*;
 
-public class Game implements Runnable {
-    public void run() {
-        SwingUtilities.invokeLater(new StartMenu());
-    }
-    
+public class Game {
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Game());
+        SwingUtilities.invokeLater(StartMenuController::new);
     }
+
 }
