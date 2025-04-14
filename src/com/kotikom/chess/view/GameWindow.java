@@ -1,7 +1,6 @@
 package com.kotikom.chess.view;
 
 import com.kotikom.chess.controller.StartMenu;
-import com.kotikom.chess.model.Board;
 import com.kotikom.chess.model.utils.Clock;
 
 import java.awt.BorderLayout;
@@ -15,7 +14,7 @@ import javax.swing.*;
 
 public class GameWindow {
     private final JFrame gameWindow;
-    private final Board board;
+    private final BoardView boardView;
     private final Clock blackClock;
     private final Clock whiteClock;
     private Timer timer;
@@ -41,9 +40,9 @@ public class GameWindow {
         gameData.setSize(gameData.getPreferredSize());
         gameWindow.add(gameData, BorderLayout.NORTH);
 
-        this.board = new Board(this);
+        this.boardView = new BoardView(this);
 
-        gameWindow.add(board, BorderLayout.CENTER);
+        gameWindow.add(boardView, BorderLayout.CENTER);
         gameWindow.add(buttons(), BorderLayout.SOUTH);
         gameWindow.setMinimumSize(gameWindow.getPreferredSize());
         gameWindow.setSize(gameWindow.getPreferredSize());
@@ -81,7 +80,7 @@ public class GameWindow {
         if (!(hh == 0 && mm == 0 && ss == 0)) {
             timer = new Timer(1000, null);
             timer.addActionListener(e -> {
-                boolean turn = board.getTurn();
+                boolean turn = boardView.getTurn();
 
                 if (turn) {
                     whiteClock.decrementSeconds();

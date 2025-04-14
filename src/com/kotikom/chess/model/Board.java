@@ -3,21 +3,10 @@ package com.kotikom.chess.model;
 import com.kotikom.chess.model.piece.Piece;
 import com.kotikom.chess.model.piece.impl.*;
 import com.kotikom.chess.model.utils.CheckmateDetector;
-import com.kotikom.chess.view.GameWindow;
 
-import javax.swing.JPanel;
-import java.awt.GridLayout;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Image;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.LinkedList;
-import java.util.List;
 
-public class Board extends JPanel implements MouseListener, MouseMotionListener {
+public class Board {
     private static final String RESOURCES_WBISHOP_PNG = "wbishop.png";
     private static final String RESOURCES_BBISHOP_PNG = "bbishop.png";
     private static final String RESOURCES_WKNIGHT_PNG = "wknight.png";
@@ -30,93 +19,63 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     private static final String RESOURCES_WQUEEN_PNG = "wqueen.png";
     private static final String RESOURCES_WPAWN_PNG = "wpawn.png";
     private static final String RESOURCES_BPAWN_PNG = "bpawn.png";
-
     public final LinkedList<Piece> bPieces;
     public final LinkedList<Piece> wPieces;
-
-    private final Square[][] board;
-    private final GameWindow g;
-    public List<Square> movable;
-
-    private boolean whiteTurn;
-
-    private Piece currPiece;
-    private int currX;
-    private int currY;
-
+    private final Square[][] boardSquares;
     private CheckmateDetector cmd;
 
-    public Board(GameWindow g) {
-        this.g = g;
-        board = new Square[8][8];
+    public Board() {
+        boardSquares = new Square[8][8];
         bPieces = new LinkedList<>();
         wPieces = new LinkedList<>();
-        setLayout(new GridLayout(8, 8, 0, 0));
 
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
+        initializeSquares();
+        initializePieces();
+    }
 
-        for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
-                int xMod = x % 2;
-                int yMod = y % 2;
-
-                if ((xMod == 0 && yMod == 0) || (xMod == 1 && yMod == 1)) {
-                    board[x][y] = new Square(this, 1, y, x);
-                    this.add(board[x][y]);
-                } else {
-                    board[x][y] = new Square(this, 0, y, x);
-                    this.add(board[x][y]);
-                }
+    private void initializeSquares() {
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                int color = (row + col) % 2 == 0 ? 1 : 0;
+                boardSquares[row][col] = new Square(this, color, col, row);
             }
         }
-
-        initializePieces();
-
-        this.setPreferredSize(new Dimension(400, 400));
-        this.setMaximumSize(new Dimension(400, 400));
-        this.setMinimumSize(this.getPreferredSize());
-        this.setSize(new Dimension(400, 400));
-
-        whiteTurn = true;
-
     }
 
     private void initializePieces() {
-
         for (int x = 0; x < 8; x++) {
-            board[1][x].put(new Pawn(0, board[1][x], RESOURCES_BPAWN_PNG));
-            board[6][x].put(new Pawn(1, board[6][x], RESOURCES_WPAWN_PNG));
+            boardSquares[1][x].put(new Pawn(0, boardSquares[1][x], RESOURCES_BPAWN_PNG));
+            boardSquares[6][x].put(new Pawn(1, boardSquares[6][x], RESOURCES_WPAWN_PNG));
         }
 
-        board[7][3].put(new Queen(1, board[7][3], RESOURCES_WQUEEN_PNG));
-        board[0][3].put(new Queen(0, board[0][3], RESOURCES_BQUEEN_PNG));
+        boardSquares[7][3].put(new Queen(1, boardSquares[7][3], RESOURCES_WQUEEN_PNG));
+        boardSquares[0][3].put(new Queen(0, boardSquares[0][3], RESOURCES_BQUEEN_PNG));
 
-        King bk = new King(0, board[0][4], RESOURCES_BKING_PNG);
-        King wk = new King(1, board[7][4], RESOURCES_WKING_PNG);
-        board[0][4].put(bk);
-        board[7][4].put(wk);
+        King bk = new King(0, boardSquares[0][4], RESOURCES_BKING_PNG);
+        King wk = new King(1, boardSquares[7][4], RESOURCES_WKING_PNG);
+        boardSquares[0][4].put(bk);
+        boardSquares[7][4].put(wk);
 
-        board[0][0].put(new Rook(0, board[0][0], RESOURCES_BROOK_PNG));
-        board[0][7].put(new Rook(0, board[0][7], RESOURCES_BROOK_PNG));
-        board[7][0].put(new Rook(1, board[7][0], RESOURCES_WROOK_PNG));
-        board[7][7].put(new Rook(1, board[7][7], RESOURCES_WROOK_PNG));
+        boardSquares[0][0].put(new Rook(0, boardSquares[0][0], RESOURCES_BROOK_PNG));
+        boardSquares[0][7].put(new Rook(0, boardSquares[0][7], RESOURCES_BROOK_PNG));
+        boardSquares[7][0].put(new Rook(1, boardSquares[7][0], RESOURCES_WROOK_PNG));
+        boardSquares[7][7].put(new Rook(1, boardSquares[7][7], RESOURCES_WROOK_PNG));
 
-        board[0][1].put(new Knight(0, board[0][1], RESOURCES_BKNIGHT_PNG));
-        board[0][6].put(new Knight(0, board[0][6], RESOURCES_BKNIGHT_PNG));
-        board[7][1].put(new Knight(1, board[7][1], RESOURCES_WKNIGHT_PNG));
-        board[7][6].put(new Knight(1, board[7][6], RESOURCES_WKNIGHT_PNG));
+        boardSquares[0][1].put(new Knight(0, boardSquares[0][1], RESOURCES_BKNIGHT_PNG));
+        boardSquares[0][6].put(new Knight(0, boardSquares[0][6], RESOURCES_BKNIGHT_PNG));
+        boardSquares[7][1].put(new Knight(1, boardSquares[7][1], RESOURCES_WKNIGHT_PNG));
+        boardSquares[7][6].put(new Knight(1, boardSquares[7][6], RESOURCES_WKNIGHT_PNG));
 
-        board[0][2].put(new Bishop(0, board[0][2], RESOURCES_BBISHOP_PNG));
-        board[0][5].put(new Bishop(0, board[0][5], RESOURCES_BBISHOP_PNG));
-        board[7][2].put(new Bishop(1, board[7][2], RESOURCES_WBISHOP_PNG));
-        board[7][5].put(new Bishop(1, board[7][5], RESOURCES_WBISHOP_PNG));
+        boardSquares[0][2].put(new Bishop(0, boardSquares[0][2], RESOURCES_BBISHOP_PNG));
+        boardSquares[0][5].put(new Bishop(0, boardSquares[0][5], RESOURCES_BBISHOP_PNG));
+        boardSquares[7][2].put(new Bishop(1, boardSquares[7][2], RESOURCES_WBISHOP_PNG));
+        boardSquares[7][5].put(new Bishop(1, boardSquares[7][5], RESOURCES_WBISHOP_PNG));
 
 
         for (int y = 0; y < 2; y++) {
             for (int x = 0; x < 8; x++) {
-                bPieces.add(board[y][x].getOccupyingPiece());
-                wPieces.add(board[7 - y][x].getOccupyingPiece());
+                bPieces.add(boardSquares[y][x].getOccupyingPiece());
+                wPieces.add(boardSquares[7 - y][x].getOccupyingPiece());
             }
         }
 
@@ -124,119 +83,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     public Square[][] getSquareArray() {
-        return this.board;
+        return this.boardSquares;
     }
 
-    public boolean getTurn() {
-        return whiteTurn;
+    public CheckmateDetector getCmd() {
+        return cmd;
     }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        // super.paintComponent(g);
-
-        for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
-                Square sq = board[y][x];
-                sq.paintComponent(g);
-            }
-        }
-
-        if (currPiece != null) {
-            if ((currPiece.getColor() == 1 && whiteTurn)
-                    || (currPiece.getColor() == 0 && !whiteTurn)) {
-                final Image i = currPiece.getImage();
-                g.drawImage(i, currX, currY, null);
-            }
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        currX = e.getX();
-        currY = e.getY();
-
-        Square sq = (Square) this.getComponentAt(new Point(e.getX(), e.getY()));
-
-        if (sq.isOccupied()) {
-            currPiece = sq.getOccupyingPiece();
-            if (currPiece.getColor() == 0 && whiteTurn)
-                return;
-            if (currPiece.getColor() == 1 && !whiteTurn)
-                return;
-            sq.setDisplay(false);
-        }
-        repaint();
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        Square sq = (Square) this.getComponentAt(new Point(e.getX(), e.getY()));
-
-        if (currPiece != null) {
-            if (currPiece.getColor() == 0 && whiteTurn)
-                return;
-            if (currPiece.getColor() == 1 && !whiteTurn)
-                return;
-
-            List<Square> legalMoves = currPiece.getLegalMoves(this);
-            movable = cmd.getAllowableSquares();
-
-            if (legalMoves.contains(sq) && movable.contains(sq)
-                    && cmd.testMove(currPiece, sq)) {
-                sq.setDisplay(true);
-                currPiece.move(sq);
-                cmd.update();
-
-                if (cmd.blackCheckMated()) {
-                    currPiece = null;
-                    repaint();
-                    this.removeMouseListener(this);
-                    this.removeMouseMotionListener(this);
-                    g.checkmateOccurred(0);
-                } else if (cmd.whiteCheckMated()) {
-                    currPiece = null;
-                    repaint();
-                    this.removeMouseListener(this);
-                    this.removeMouseMotionListener(this);
-                    g.checkmateOccurred(1);
-                } else {
-                    currPiece = null;
-                    whiteTurn = !whiteTurn;
-                    movable = cmd.getAllowableSquares();
-                }
-
-            } else {
-                currPiece.getPosition().setDisplay(true);
-                currPiece = null;
-            }
-        }
-
-        repaint();
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        currX = e.getX() - 24;
-        currY = e.getY() - 24;
-
-        repaint();
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
 }
