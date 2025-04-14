@@ -13,7 +13,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.List;
 
 public class BoardView extends JPanel implements MouseListener, MouseMotionListener {
-    private final GameWindow g;
+    private final GameWindowView g;
     private final Board board;
     private final CheckmateDetector cmd;
     private boolean whiteTurn;
@@ -21,7 +21,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
     private int currX;
     private int currY;
 
-    public BoardView(GameWindow g) {
+    public BoardView(GameWindowView g) {
         this.g = g;
         this.board = new Board();
         this.cmd = board.getCmd();
@@ -124,13 +124,13 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
                 repaint();
                 this.removeMouseListener(this);
                 this.removeMouseMotionListener(this);
-                g.checkmateOccurred(0);
+                g.handleCheckmate(0);
             } else if (cmd.whiteCheckMated()) {
                 currPiece = null;
                 repaint();
                 this.removeMouseListener(this);
                 this.removeMouseMotionListener(this);
-                g.checkmateOccurred(1);
+                g.handleCheckmate(1);
             } else {
                 currPiece = null;
                 whiteTurn = !whiteTurn;

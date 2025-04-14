@@ -1,6 +1,5 @@
 package com.kotikom.chess.controller;
 
-import com.kotikom.chess.view.GameWindow;
 import com.kotikom.chess.view.StartMenuView;
 
 import javax.swing.*;
@@ -48,7 +47,7 @@ public class StartMenuController {
                     (String) Objects.requireNonNull(view.getSeconds().getSelectedItem()));
 
             // Launch game window
-            new GameWindow(blackName, whiteName, hours, minutes, seconds);
+            new GameWindowController(blackName, whiteName, hours, minutes, seconds);
             view.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(

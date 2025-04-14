@@ -11,7 +11,7 @@ public class Clock {
         this.ss = ss;
     }
 
-    public boolean outOfTime() {
+    public boolean isZero() {
         return (hh == 0 && mm == 0 && ss == 0);
     }
 
