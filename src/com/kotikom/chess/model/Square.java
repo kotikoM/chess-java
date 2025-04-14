@@ -29,14 +29,6 @@ public class Square extends JComponent {
         return board;
     }
 
-    public int getColor() {
-        return color;
-    }
-
-    public boolean isDisplayPiece() {
-        return displayPiece;
-    }
-
     public Piece getOccupyingPiece() {
         return occupyingPiece;
     }
@@ -77,9 +69,9 @@ public class Square extends JComponent {
         super.paintComponent(g);
 
         if (this.color == 1) {
-            g.setColor(new Color(221, 192, 127));
+            g.setColor(new Color(233, 233, 206));
         } else {
-            g.setColor(new Color(101, 67, 33));
+            g.setColor(new Color(110, 150, 80));
         }
 
         g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
