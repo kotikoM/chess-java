@@ -11,6 +11,18 @@ This repository is a **refactored fork** of the original project. All UI enhance
 - Improved font, spacing, and design using only **Java Swing** (no external libraries)
 - Preserved all original functionality and architecture
 
+### Refactoring Improvements
+- Reorganized the project structure by clearly separating concerns into `model`, `view`, and `controller` packages to improve maintainability and scalability.
+
+- Moved core game mechanics into `model.core` and `model.internal` to isolate chess logic from core components.
+
+- Refactored UI components (`board`, `square`, `gamewindow`, and `startmenu`) into distinct `view` and `controller` layers, aligning with the MVC design pattern.
+
+- Improved the logic handling for game-ending scenarios by refining rules around checkmate, stalemate, legal king moves, and in-check states.
+
+- Added unit tests to verify the correctness of piece movement logic, ensuring more robust and predictable behavior across gameplay scenarios.
+
+
 ---
 
 ## Technology
@@ -54,9 +66,10 @@ chess-java/
     ```
 3. Run the game
     ```bash
-   mvn exec:java -Dexec.mainClass="com.kotikom.chess.Game"
+   mvn exec:java
     ```
-
+If maven commands don't work, open project in editor and manually run [Game.java](src%2Fmain%2Fjava%2Fcom%2Fkotikom%2Fchess%2FGame.java).
+ 
 ---
 
 ## License
