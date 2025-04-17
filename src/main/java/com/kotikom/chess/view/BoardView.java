@@ -30,6 +30,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
 
+        initializeBoardView();
         addListenersToBoardSquares();
 
         this.setPreferredSize(new Dimension(400, 400));
@@ -44,7 +45,18 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
         Square[][] boardSquares = board.getBoardSquares();
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                this.add(boardSquares[x][y]);
+                this.add(boardSquares[x][y].getSquareView());
+            }
+        }
+    }
+
+    private void initializeBoardView() {
+        Square[][] boardSquares = board.getBoardSquares();
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                SquareView squareView = new SquareView(boardSquares[x][y]);
+                boardSquares[x][y].setSquareView(squareView);
+                this.add(squareView);
             }
         }
     }
@@ -59,8 +71,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
         Square[][] squareArray = board.getBoardSquares();
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                Square sq = squareArray[y][x];
-                sq.paintComponent(g);
+                squareArray[y][x].getSquareView().paintComponent(g);
             }
         }
 
@@ -78,23 +89,23 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
         currX = e.getX();
         currY = e.getY();
 
-        Square sq = (Square) this.getComponentAt(new Point(e.getX(), e.getY()));
-
+        SquareView sqw = (SquareView) this.getComponentAt(new Point(e.getX(), e.getY()));
+        Square sq = sqw.getSquare();
         if (sq.isOccupied()) {
             currPiece = sq.getOccupyingPiece();
             if (currPiece.getColor() == 0 && whiteTurn)
                 return;
             if (currPiece.getColor() == 1 && !whiteTurn)
                 return;
-            sq.setDisplay(false);
+            sq.setDisplayPiece(false);
         }
         repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        Square sq = (Square) this.getComponentAt(new Point(e.getX(), e.getY()));
-
+        SquareView sqw = (SquareView) this.getComponentAt(new Point(e.getX(), e.getY()));
+        Square sq = sqw.getSquare();
         if (currPiece == null)
             return;
         if (currPiece.getColor() == 0 && whiteTurn)
@@ -108,7 +119,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
         if (legalMoves.contains(sq) &&
                 movable.contains(sq) &&
                 cmd.testMove(currPiece, sq)) {
-            sq.setDisplay(true);
+            sq.setDisplayPiece(true);
             currPiece.move(sq);
             cmd.update();
 
@@ -130,7 +141,7 @@ public class BoardView extends JPanel implements MouseListener, MouseMotionListe
             }
 
         } else {
-            currPiece.getCurrentSquare().setDisplay(true);
+            currPiece.getCurrentSquare().setDisplayPiece(true);
             currPiece = null;
         }
 

@@ -49,7 +49,7 @@ public abstract class Piece {
 
 
     public void draw(Graphics g) {
-        g.drawImage(this.image, currentSquare.getX(), currentSquare.getY(), null);
+        g.drawImage(this.image, currentSquare.getXNum(), currentSquare.getYNum(), null);
     }
 
     public abstract List<Square> getLegalMoves(Board b);
